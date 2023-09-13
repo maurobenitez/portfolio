@@ -1,127 +1,72 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, IconButton, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
+import NavListDrawer from './navbar/NavListDrawer';
+import { Drawer } from '@material-ui/core';
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 
-import { animateScroll as scroll } from 'react-scroll';
+const navLinks = [
+    {
+        title: 'Proyectos',
+        path: '#proyectos',
+        icon: <MailOutlinedIcon />
+    },
+    {
+        title: 'Contacto',
+        path: '#contacto',
+        icon: <MailOutlinedIcon />
 
-const pages = ['Proyectos', 'Contacto'];
+    }
+];
 
-function ResponsiveAppBar() {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+const ResponsiveAppBar = () => {
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+    const [open, setOpen] = useState(false);
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    const scrollToSection = () => {
-        scroll.scrollTo('sectionId', {
-            duration: 800, // Duration of the scroll animation in milliseconds
-            smooth: 'easeInOutQuart', // Easing function for smooth scrolling
-        });
-    };
     return (
-        <AppBar position="static" sx={{ width: 1 }}>
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
+        <>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        size="large"
+                        onClick={() => setOpen(true)}
+                        sx={{display: {xs: "flex", sm:"none"}}}
+                        edge="start"
                     >
-                        MAURO BENITEZ
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h4" sx={{ flexGrow: 1 }}>
+                        Mauro Benitez
                     </Typography>
+                    <Box sx={{display: {xs:"none", sm:"block"}}}>
+                        {
+                            navLinks.map(link => (
+                                <Button
+                                    color="inherit"
+                                    key={link.title}
+                                    component={Link}
+                                    to={link.path}>
+                                    {link.title}
+                                </Button>
+                            ))
+                        }
+                    </Box>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        MAURO BENITEZ
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                    </Box>
                 </Toolbar>
-            </Container>
-        </AppBar>
+            </AppBar>
+            <Drawer
+                open={open}
+                anchor="left"
+                onClose={() => setOpen(false)}
+                sx={{display: {xs:"flex", sm:"none"}}}
+            >
+                <NavListDrawer navLinks={navLinks} />
+            </Drawer>
+        </>
     );
-}
+};
+
 export default ResponsiveAppBar;

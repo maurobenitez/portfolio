@@ -30,14 +30,10 @@ const AboutMe = () => {
                 <Grid item xs={12} sm container>
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
-                            <Typography variant="h5">Your Name</Typography>
+                            <Typography variant="h5">Mauro Benitez</Typography>
                             <Typography variant="body2" color="textSecondary">
-                                Junior Fullstack Developer
+                                Fullstack Developer
                             </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                                Location: Your City, Your Country
-                            </Typography>
-                            {/* Add more details about yourself here */}
                         </Grid>
                     </Grid>
                 </Grid>

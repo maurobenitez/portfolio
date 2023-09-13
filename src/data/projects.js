@@ -2,7 +2,8 @@ const projects = [
     {
         id: 1,
         name: "henry pokemon",
-        description: "blablabla",
+        shortDescription: "blablabla",
+        longDescription: "blablabla blablabla blablablablablablablablablablablabla blablabla blablabla",
         technologies: ["react, redux", "javascript"],
         date: "10/10/2022",
         image: "pokemon.jpg",
@@ -12,7 +13,8 @@ const projects = [
     {
         id: 2,
         name: "sintetico",
-        description: "bla bla bla",
+        shortDescription: "bla bla bla",
+        longDescription: "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ",
         technologies: ["react", "redux"],
         date: "10/11/2022",
         image: "futbol.jpg",

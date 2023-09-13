@@ -3,6 +3,8 @@ import ProjectList from "../components/ProjectList";
 import projectsController from "../data/projectsController";
 import Headline from "../components/Headline";
 import AboutMe from "../components/AboutMe";
+
+
 export const loader = ()=> {
     const projects = projectsController.getProjects();
     return {projects};

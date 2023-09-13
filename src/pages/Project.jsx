@@ -31,8 +31,8 @@ const Project = () => {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h4" gutterBottom>{project.name}</Typography>
-                        <Typography variant="body1" paragraph>{project.description}</Typography>
-                        <Typography variant="h6" gutterBottom>Technologies Used:</Typography>
+                        <Typography variant="body1" paragraph>{project.longDescription}</Typography>
+                        <Typography variant="h6" gutterBottom>Tecnologías usadas:</Typography>
                         <div>
                             {project.technologies.map((tech, index) => (
                                 <Chip key={index} label={tech} variant="outlined" sx={{ mr: 1, mb: 1 }} />

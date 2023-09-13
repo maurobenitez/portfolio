@@ -8,7 +8,7 @@ const ProjectList = () => {
     const { projects } = useLoaderData();
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="h3" component="h3">
+            <Typography variant="h4" component="h3">
                 Mis proyectos
             </Typography>
 
@@ -21,7 +21,7 @@ const ProjectList = () => {
                             name={project.name}
                             date={project.date}
                             image={project.image}
-                            description={project.description}
+                            description={project.shortDescription}
                         />
                         </Grid>
                     )
